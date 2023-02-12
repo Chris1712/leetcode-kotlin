@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.7.10"
+    id("org.jetbrains.kotlin.jvm") version "1.7.20"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -19,9 +19,6 @@ dependencies {
 
     // Use the JUnit 5 integration.
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-
-    // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.1-jre")
 }
 
 application {
