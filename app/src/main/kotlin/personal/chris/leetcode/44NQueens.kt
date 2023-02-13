@@ -16,18 +16,36 @@ class `44NQueens` {
             if (remaining == 0) {
                 return listOf(queenPositions)
             }
+            val currentRowIndex = queenPositions.size
 
             val possiblePositions = MutableList<Int>(n) { 1 }
-            // Determine available positions in current row (set position in index to 0 where not available)
-            queenPositions.forEach() { possiblePositions[it] = 0 } // Can't be in the same column
 
+            // Determine available positions in current row (set position in index to 0 where not available)
+
+            // 1/3: Can't be in the same column
+            queenPositions.forEach{ possiblePositions[it] = 0 }
+
+            // 2/3: Can't be in the same right diagonal
+            queenPositions.forEachIndexed { index, value ->
+                val rightDiagonalIndex = value + (currentRowIndex - index)
+                if (rightDiagonalIndex < n) {
+                    possiblePositions[rightDiagonalIndex] = 0
+                }
+            }
+
+            // 3/3: Can't be in the same left diagonal
+            queenPositions.forEachIndexed { index, value ->
+                val leftDiagonalIndex = value - (currentRowIndex - index)
+                if (leftDiagonalIndex >= 0) {
+                    possiblePositions[leftDiagonalIndex] = 0
+                }
+            }
 
             // For each available position, call solveBoard with this row populated
             return possiblePositions
-                .mapIndexed() { index, value -> Pair(index, value) }
+                .mapIndexed { index, value -> Pair(index, value) }
                 .filter { it.second == 1 } // Only where available
-                .map { solveBoard(queenPositions = queenPositions.plus(it.first), n = n, remaining = remaining-1) }
-                .flatten()
+                .flatMap { solveBoard(queenPositions = queenPositions.plus(it.first), n = n, remaining = remaining-1) }
         }
 
         fun intSolutionToStrings(queenPositions: List<Int>): List<String> {
