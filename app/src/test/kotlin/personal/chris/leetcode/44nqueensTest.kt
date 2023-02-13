@@ -26,4 +26,13 @@ class `44NQueensTest` {
         assertEquals(2, solution.size)
     }
 
+    @Test fun `n=1 has 1 solution`() {
+        val solution = `44NQueens`.solveNQueens(1)
+
+        assertNotNull(solution)
+        assertEquals(1, solution.size)
+        assertEquals(1, solution[0].size)
+        assertEquals("Q", solution[0][0])
+    }
+
 }
