@@ -9,6 +9,13 @@ class `44NQueens` {
         }
 
         /**
+         * Covers #52 N-Queens II
+         */
+        fun solveNQueensCount(n: Int): Int {
+            return solveBoard(n, n, emptyList()).size
+        }
+
+        /**
          * Recursively solve the board going row by row, returning a list of solutions
          * Each solution is a list of Integers, where the index is the row and the value is the column index
          */
