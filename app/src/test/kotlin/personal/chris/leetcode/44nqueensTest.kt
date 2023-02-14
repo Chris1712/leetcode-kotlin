@@ -7,10 +7,12 @@ import kotlin.test.assertNotNull
 
 class `44NQueensTest` {
 
+    val target = `44NQueens`()
+
     @Test fun `intSolutionsToStrings works`() {
         val intSolution = listOf(1, 3, 0 ,2)
 
-        val stringSolution = `44NQueens`.intSolutionToStrings(intSolution)
+        val stringSolution = target.intSolutionToStrings(intSolution)
 
         assertEquals(4, stringSolution.size)
         assertEquals(".Q..", stringSolution[0])
@@ -20,14 +22,14 @@ class `44NQueensTest` {
     }
 
     @Test fun `n=4 has 2 solutions`() {
-        val solution = `44NQueens`.solveNQueens(4)
+        val solution = target.solveNQueens(4)
 
         assertNotNull(solution)
         assertEquals(2, solution.size)
     }
 
     @Test fun `n=1 has 1 solution`() {
-        val solution = `44NQueens`.solveNQueens(1)
+        val solution = target.solveNQueens(1)
 
         assertNotNull(solution)
         assertEquals(1, solution.size)
